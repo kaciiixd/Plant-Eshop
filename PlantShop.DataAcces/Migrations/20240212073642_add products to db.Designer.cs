@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlantShop.DataAccess.Data;
 
@@ -10,9 +11,11 @@ using PlantShop.DataAccess.Data;
 namespace PlantShop.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240212073642_add products to db")]
+    partial class addproductstodb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,14 +109,7 @@ namespace PlantShop.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -130,17 +126,13 @@ namespace PlantShop.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
                             Id = 10,
-                            CategoryId = 1,
                             Description = "The Alocasia Polly, also known as the African Mask Plant is a very unique looking plant. She has gorgeous white veins on her glossy green leaves. Her leaves are heart-shaped and have frilled edges. She originates from the rainforest in Southeast Asia, where she can become enormous!",
-                            ImageUrl = "",
                             Price = 24.989999999999998,
                             Size = "M",
                             Title = "Alocasia Polly"
@@ -148,9 +140,7 @@ namespace PlantShop.DataAccess.Migrations
                         new
                         {
                             Id = 20,
-                            CategoryId = 2,
                             Description = "The Caladium is a tropical plant originating from Central and Southern America, particularly Brazil and the Amazon, that grows in the jungle. Caladiums are beautiful plants that grow from bulbs. Their heart-shaped, often brightly colored and beautifully veined leaves make the Caladium a real eyecatcher! The leaves of the Red Flash have a green edge with pink speckles that shifts to a beautiful bright red towards the center!\r\n\r\nYou can grow the Caladium yourself with this tuber. It takes a little effort, but you will be rewarded with the magnificant leaves of the Red Flash. In the care text you can read the whole description on how to grow the tuber into a mature plant.",
-                            ImageUrl = "",
                             Price = 14.99,
                             Size = "Tuber",
                             Title = "Caladium 'Red Flash'"
@@ -158,9 +148,7 @@ namespace PlantShop.DataAccess.Migrations
                         new
                         {
                             Id = 30,
-                            CategoryId = 3,
                             Description = "The Calathea medallion has a memorable appearance with her bold patterned leaves and beautiful deep purple underside. During the day she lets her leaves stand open, but when night falls she closes them up and reveals the deep purple colour on their underside. If you are very quiet you can even hear the gentle rustling as she transforms! The Calathea medallion likes to take up plenty of space, but she doesn’t need a lot of light. As a domestic plant it does well in the darker areas of your living room, the hall or even the bathroom.",
-                            ImageUrl = "",
                             Price = 24.989999999999998,
                             Size = "XL",
                             Title = "Calathea Medallion"
@@ -168,9 +156,7 @@ namespace PlantShop.DataAccess.Migrations
                         new
                         {
                             Id = 40,
-                            CategoryId = 4,
                             Description = "This Epipremnum is one the rarer side and she has an amazing silvery to blue hue over her. This is the Epipremnum Cebu Blue and she is loved for her stunning leaves. They are long and narrow, the young version has tiny fenestrations, but the mature version has huge fenestrations. This beauty comes without many strings attached, since she is rather easy to care for and also grows rapidly. You will have endless trailing vines in no time! Is this the one for you? Buy Epipremnum Cebu Blue online.",
-                            ImageUrl = "",
                             Price = 16.949999999999999,
                             Size = "M",
                             Title = "Epipremnum Cebu Blue"
@@ -178,9 +164,7 @@ namespace PlantShop.DataAccess.Migrations
                         new
                         {
                             Id = 50,
-                            CategoryId = 5,
                             Description = "The Ficus Lyrata, also known as the fig-leaf plant or violet leaf plant, is a huge feast for the eyes and is really one of our favourites. The beautiful large, strong heart-shaped leaves grow proudly upwards and give her a dignified appearance. This giant beauty is extra special as she has multiple branches. This way she easily fills up the room, not only in height but also in width!",
-                            ImageUrl = "",
                             Price = 114.95,
                             Size = "XXL",
                             Title = "Ficus Lyrata"
@@ -188,9 +172,7 @@ namespace PlantShop.DataAccess.Migrations
                         new
                         {
                             Id = 60,
-                            CategoryId = 6,
                             Description = "Isn't this Hoya Kerrii (double leaf) super special? Two hearts in one! That is why this Hoya is also called the heart plant. This romantic cutie is a real cupid, so besides being lovely to own, this plant is also nice to give away to someone special. It is one of the few plants that always stays this small, but that does not make it any less fun! \r\n\r\n* Please note that this leaf-only cutting will not grow, as these cuttings lack a node from which new roots or leaves can emerge.",
-                            ImageUrl = "",
                             Price = 5.9500000000000002,
                             Size = "XS",
                             Title = "Hoya Kerrii"
@@ -198,9 +180,7 @@ namespace PlantShop.DataAccess.Migrations
                         new
                         {
                             Id = 70,
-                            CategoryId = 7,
                             Description = "Here is the most beloved and rare Thai Constellation. To make her even more desirable, this is the cute baby form! She earns her name on her variegation that looks like a constellation. In contrast to most variegated plants, the Thai’s variegation is stable, yay! This is because she was especially produced for this, which also means that you will not be able to find this cutie anywhere in nature. All with all, a very special plant that would love a spot inside your urban jungle!",
-                            ImageUrl = "",
                             Price = 39.950000000000003,
                             Size = "XS",
                             Title = "Monstera Thai Constellation"
@@ -208,9 +188,7 @@ namespace PlantShop.DataAccess.Migrations
                         new
                         {
                             Id = 80,
-                            CategoryId = 8,
-                            Description = "The Philodendron family is very broad, but the Philodendron birkin is perhaps the most remarkable of the bunch. This incredibly beautiful plant can be instantly recognised by the fine light-coloured stripes on her dark green leaves, which look as if they were added by the delicate hand of an artist. The new leaves, which appear from the top of the plant, are a lot lighter than the lower leaves and provide a beautiful contrasting range of tones that will compliment every home.",
-                            ImageUrl = "",
+                            Description = "The Philodendron family is very broad, but the Philodendron birkin is perhaps the most remarkable of the bunch. This incredibly beautiful plant can be instantly recognised by the fine light-coloured stripes on her dark green leaves, which look as if they were added by the delicate hand of an artist. The new leaves, which appear from the top of the plant, are a lot lighter than the lower leaves and provide a beautiful contrasting range of tones that will compliment every home.\r\n\r\n",
                             Price = 12.949999999999999,
                             Size = "M",
                             Title = "Philodendron Birkin"
@@ -218,24 +196,11 @@ namespace PlantShop.DataAccess.Migrations
                         new
                         {
                             Id = 90,
-                            CategoryId = 9,
                             Description = "The lotus under the succulents, the Crassula Garnet Lotus. Her leaves are shaped up like a flower and are coloured soft green with a soft lilac hue to her. A really pretty plant to own! And the cool thing with succulents is that one leaves can actually grow into a whole new baby succulent, which will keep you busy for days! Are you sold on this cute plant? Buy Crassula Garnet Lotus online.",
-                            ImageUrl = "",
                             Price = 4.4500000000000002,
                             Size = "XS",
                             Title = "Garnet Lotus"
                         });
-                });
-
-            modelBuilder.Entity("PlantShop.Models.Product", b =>
-                {
-                    b.HasOne("PlantShop.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }
